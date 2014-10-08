@@ -3,8 +3,11 @@ class ContactsController < ApplicationController
 
   # GET /contacts
   # GET /contacts.json
+
   def index
-    @contacts = Contact.all
+   @contacts = Contact.all
+   
+render actions:"index"
   end
 
   # GET /contacts/1
@@ -63,12 +66,13 @@ class ContactsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_contact
+    def 
+
       @contact = Contact.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def contact_params
-      params.require(:contact).permit(:name, :address,:mobile)
+      params.require(:contact).permit(:name, :address,:mobile, :email)
     end
 end
