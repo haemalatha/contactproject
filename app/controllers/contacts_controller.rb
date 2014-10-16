@@ -5,7 +5,8 @@ class ContactsController < ApplicationController
   # GET /contacts.json
 
   def index
-   @contacts = Contact.where(user_id: params[:id])
+   @contacts = Contact.where("user_id =? OR type_id = ?",  session[:user_id],2)
+
    
 
   end
@@ -13,9 +14,11 @@ class ContactsController < ApplicationController
   # GET /contacts/1
   # GET /contacts/1.json
   def show
+    @contact = Contact.get_contact( params[:id], session[:user_id] )
   end
 
   # GET /contacts/new
+
   def new
     @contact = Contact.new
   end
@@ -28,6 +31,7 @@ class ContactsController < ApplicationController
   # POST /contacts.json
   def create
     @contact = Contact.new(contact_params)
+    @contact.user_id = session[:user_id]
 
     respond_to do |format|
       if @contact.save
@@ -72,6 +76,9 @@ class ContactsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def contact_params
-      params.require(:contact).permit(:name, :address,:mobile, :email)
+      params.require(:contact).permit(:name, :address,:mobile, :email, :type_id)
     end
+  # def validate_user
+  #
+  # end
 end

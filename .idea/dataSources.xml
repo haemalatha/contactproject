@@ -3,8 +3,10 @@
   <component name="DataSourceManagerImpl" format="xml" hash="1947594854">
     <data-source source="LOCAL" name="Rails project: development" uuid="ec0c5cfb-4380-4243-b331-ce1455af99d3">
       <driver-ref>sqlite.xerial</driver-ref>
-      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/db/development.sqlite3</jdbc-url>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://127.0.0.1/project_dev</jdbc-url>
+      <user-name>root</user-name>
+      <user-password>dfc2dfcbdfcfdfc7dfd9df9bdf98df98df9b</user-password>
       <libraries />
     </data-source>
     <data-source source="LOCAL" name="Rails project: test" uuid="80d4973c-27e3-4770-a768-01c7a8326e4b">

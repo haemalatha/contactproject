@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<% if @contact.present? %>
 
 <p>
   <strong>Name:</strong>
@@ -18,5 +18,12 @@
   <strong>email:</strong>
   <%= @contact.email %>
 </p>
+    <p>
+      <strong>type_id:</strong>
+      <%= @contact.type_id %>
+    </p>
 <%= link_to 'Edit', edit_contact_path(@contact) %> |
-<%= link_to 'Back', contacts_path %>
+<%= link_to 'Back', contacts_path  %>
+<% else %>
+nothing found
+<% end %>
