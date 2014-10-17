@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141015123808) do
+ActiveRecord::Schema.define(version: 20141016125312) do
 
   create_table "activities", force: true do |t|
     t.integer  "trackable_id"
@@ -35,10 +35,14 @@ ActiveRecord::Schema.define(version: 20141015123808) do
     t.string   "address"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "mobile",     limit: 20
+    t.string   "mobile",             limit: 20
     t.string   "email"
     t.integer  "user_id"
     t.integer  "type_id"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   create_table "users", force: true do |t|

@@ -40,3 +40,9 @@ gem 'spring',        group: :development
 # gem 'debugger', group: [:development, :test]
 
 gem 'public_activity'
+
+gem 'pry', '~> 0.10.1'
+
+gem 'paperclip', :git => "git://github.com/thoughtbot/paperclip.git"
+
+gem 'rmagick'
