@@ -1,20 +1,19 @@
 Rails.application.routes.draw do
-  
+
   # get 'users/new'
-  get "/login", to: "sessions#login"
-  post "/login", to: "sessions#login_attempt"
+  match "/login", to: "sessions#login", via: [:get, :post]
   get "/logout", to: "sessions#logout"
 
 # resources :sessions, controller: 'contacts'
-resources :contacts
-  # controller: 'sessions'
-  # resources :users
+  resources :contacts
+# controller: 'sessions'
+# resources :users
 
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
+# The priority is based upon order of creation: first created -> highest priority.
+# See how all your routes lay out with "rake routes".
 
-  # You can have the root of your site routed with "root"
-   root 'sessions#login'
+# You can have the root of your site routed with "root"
+  root 'sessions#login'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

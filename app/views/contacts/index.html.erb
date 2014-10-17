@@ -2,34 +2,36 @@
 
 <table>
   <thead>
-    <tr>
-      <th>Name</th>
-      <th>Address</th>
-<th>mobile</th>
-<th>email</th>
-      <th>photo></th>
-<th col align="left"></th>
-      <th colspan="5"></th>
-    </tr>
+  <tr>
+    <th>Name</th>
+    <th>Address</th>
+    <th>mobile</th>
+    <th>email</th>
+    <th>photo</th>
+    <th>Created By</th>
+    <th col_align="left"></th>
+    <th colspan="5"></th>
+    <td padding-top="5px"></td>
+    <td padding-bottom="5px"></td>
+  </tr>
   </thead>
 
   <tbody>
-    <% @contacts.each do |contact| %>
+  <% @contacts.each do |contact| %>
       <tr>
         <td><%= contact.name %></td>
         <td><%= contact.address %></td>
-<td><%= contact.mobile %></td>
-<td><%= contact.email %></td>
-
-
+        <td><%= contact.mobile %></td>
+        <td><%= contact.email %></td>
         <td><%= image_tag(contact.photo, size: "50x50") %></td>
+        <td><%= User.find( contact.user_id ).username %></td>
 
 
         <td><%= link_to 'Show', contact %></td>
         <td><%= link_to 'Edit', edit_contact_path(contact) %></td>
         <td><%= link_to 'Destroy', contact, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
-    <% end %>
+  <% end %>
   </tbody>
 </table>
 

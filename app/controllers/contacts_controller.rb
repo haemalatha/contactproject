@@ -5,16 +5,13 @@ class ContactsController < ApplicationController
   # GET /contacts.json
 
   def index
-   @contacts = Contact.where("user_id =? OR type_id = ?",  session[:user_id],2)
-
-   
-
+   @contacts = Contact.where("user_id = ? OR type_id = ?", session[:user_id], 2)
   end
 
   # GET /contacts/1
   # GET /contacts/1.json
   def show
-    @contact = Contact.get_contact( params[:id], session[:user_id] )
+
   end
 
   # GET /contacts/new
@@ -30,8 +27,7 @@ class ContactsController < ApplicationController
   # POST /contacts
   # POST /contacts.json
   def create
-    @contact = Contact.new(contact_params)
-    @contact.user_id = session[:user_id]
+    @contact = current_user.contacts.new(contact_params)
 
     respond_to do |format|
       if @contact.save
@@ -62,6 +58,7 @@ class ContactsController < ApplicationController
   # DELETE /contacts/1.json
   def destroy
     @contact.destroy
+
     respond_to do |format|
       format.html { redirect_to contacts_url, notice: 'Contact was successfully destroyed.' }
       format.json { head :no_content }
@@ -71,7 +68,11 @@ class ContactsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_contact
-      @contact = Contact.find(params[:id])
+      @contact = Contact.where(id: params[:id]).first
+
+      if @contact.present? && @contact.type_id == 1 && @contact.user_id != current_user.id
+        redirect_to( contacts_path, alert: 'You are not allowed to access that contact') and return false
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

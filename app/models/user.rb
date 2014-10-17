@@ -14,6 +14,6 @@ class User < ActiveRecord::Base
   #   end
   #
   # end
-  belongs_to :contact
+  has_many :contacts
 
 end
